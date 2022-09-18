@@ -8,44 +8,70 @@ Colorblind safe color palette from colorbrewer2.org
 */
 
  body {
+   /*Changes the color behind the body to light blue using hex code above*/
    background-color: #92c5de;
+   /*Changes the color of the body text to blue using hex code above*/
    color: #0571b0;
+   /*Centers the text within the body selector*/
    text-align: center;
+   /*Creates a margin of 0 for the body, so the edges are against the webpage*/
    margin: 0;
  }
 
 h1 {
+  /*Changes the color of the h1 heading to off white using hex code above*/
   color: #f7f7f7;
+  /*Creates a 5px gap between the h1 heading text and the header*/
   padding: 5px;
+  /*Sets the margin of the h1 heading to 0*/
   margin: 0;
 }
 
 #body-container {
+  /*Changes the background color of the body container to off white using hex
+  code above*/
   background-color: #f7f7f7;
+  /*Sets the maximum width of the body container to 1000px if the size of the
+  webpage changes*/
   max-width: 1000px;
+  /*Sets the margins of the body container automatically based on the set width*/
   margin: auto;
+  /*Sets the height body container to 100% of the browser's height*/
   height: 100vh;
+  /*Creates a border around the body container that is 2 pixels wide, a solid
+  line, and off white in color using the hex code*/
   border: 2px solid #f7f7f7;
+  /*Defines the radius of 25 pixels fro the border's corners*/
   border-radius: 25px;
+  /*States that any content that overflows beyond the webpage, is hidden*/
   overflow: hidden;
 }
 
 #header {
+  /*Changes the background color of the h1 header is blue using the hex code*/
   background-color: #0571b0;
 }
 
 #profile-picture {
+  /*Places the profile picture on the lefthand side of the body container*/
   float: left;
 }
 
 #welcome-text {
+  /*Places the welcome text wiithin the body container 25 pixels below the top*/
   padding-top: 25px;
+  /*States that the font size for the welcome text is 25 pixels*/
   font-size: 25px;
 }
 
 #research-interests {
+  /*Aligns the research interest text to the left*/
   text-align: left;
+  /*States that the font size for the research interests text is 25 pixels*/
   font-size: 25px;
+  /*Positions the research interests text relative to the normal position*/
   position: relative;
+  /*Changes the relative position of the text to be left 50 pixels of its normal
+  position*/
   left: 50px;
 }
