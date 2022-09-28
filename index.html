@@ -15,6 +15,7 @@
       <img src=images/profile-picture.jpg width=500px height=500px />
     </div>
     <div id="welcome-text">
+      My name is Emily. <br>
       Welcome to my webpage.<br>
       I am a student in the
       <a href="https://www.clarku.edu/schools/idce/">IDCE Department</a> at
@@ -29,6 +30,15 @@
       </ul>
     </div>
   </div>
-  <footer>© 2022 by Emily Heltzel</footer>
+  <div id="copyright">
+    <script>
+      // Finding today's date from the browser.
+      var today = new Date();
+      // Using today's date and isolating the year.
+      var year = today.getFullYear();
+      // Writing on the site Copyright with the copyright symbol and the current year.
+      document.writeln("Copyright &copy; " + year);
+    </script>
+  </div>
 </body>
 </html>
