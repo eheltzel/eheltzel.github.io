@@ -68,12 +68,19 @@ h1 {
   /*Aligns the research interest text to the left*/
   text-align: left;
   /*States that the font size for the research interests text is 25 pixels*/
-  font-size: 25px;
+  font-size: 20px;
   /*Positions the research interests text relative to the normal position*/
   position: relative;
   /*Changes the relative position of the text to be left 50 pixels of its normal
   position*/
   left: 50px;
+}
+
+#webmap-reviews {
+  text-align: left;
+  font-size: 20px;
+  position: relative;
+  left: 10px;
 }
 
 #copyright {
