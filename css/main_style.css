@@ -5,6 +5,7 @@ Colorblind safe color palette from colorbrewer2.org
 #f7f7f7 - off white
 #92c5de - light blue
 #057160 - blue
+#ebf5fb -
 */
 
  body {
@@ -44,7 +45,7 @@ h1 {
   /*Defines the radius of 25 pixels fro the border's corners*/
   border-radius: 25px;
   /*States that any content that overflows beyond the webpage, is hidden*/
-  overflow: hidden;
+  overflow: scroll;
 }
 
 #header {
@@ -81,7 +82,17 @@ h1 {
   font-size: 15px;
   position: relative;
   left: 10px;
-  z-index: 1
+  z-index: 1;
+  padding-right: 10px;
+}
+
+#calculator {
+  text-align: left;
+  position: relative;
+  left: 25px;
+  border: 2px solid;
+  max-width: 300px;
+  padding-left: 10px;
 }
 
 #copyright {
