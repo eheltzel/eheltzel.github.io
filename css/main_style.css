@@ -5,7 +5,8 @@ Colorblind safe color palette from colorbrewer2.org
 #f7f7f7 - off white
 #92c5de - light blue
 #057160 - blue
-#ebf5fb -
+#cccccc - light gray
+#dddddd - lighter gray
 */
 
  body {
@@ -26,6 +27,12 @@ h1 {
   padding: 5px;
   /*Sets the margin of the h1 heading to 0*/
   margin: 0;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
 }
 
 #body-container {
@@ -60,7 +67,7 @@ h1 {
 
 #welcome-text {
   /*Places the welcome text wiithin the body container 25 pixels below the top*/
-  padding-top: 25px;
+  padding-top: 15px;
   /*States that the font size for the welcome text is 25 pixels*/
   font-size: 25px;
 }
@@ -81,15 +88,16 @@ h1 {
   text-align: left;
   font-size: 15px;
   position: relative;
-  left: 10px;
+  left: 20px;
   z-index: 1;
   padding-right: 10px;
 }
 
+
 #calculator {
   text-align: left;
   position: relative;
-  left: 25px;
+  left: 20px;
   border: 2px solid;
   max-width: 300px;
   padding-left: 10px;
