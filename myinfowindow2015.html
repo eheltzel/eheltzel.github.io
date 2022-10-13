@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info windows</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOrFm_CjXpfY6T9n0g6s7TnUW6VLIe95Q&callback=initMap&v=weekly"></script>
+    <script>
+// This example displays a marker at the center of Australia.
+// When the user clicks the marker, an info window opens.
+
+function initialize() {
+  var myLatlng = new google.maps.LatLng(37.7461549466589, -119.53323152264481);
+  var mapOptions = {
+    zoom: 13,
+    center: myLatlng
+  };
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+  var contentString =
+  '<div id="content">' +
+    '<h1 id="firstHeading" class="firstHeading">Half Dome</h1>' +
+      'Half Dome is one of my favorite landmarks. ' +
+      'I was lucky enough to hike Half Dome many years ago. ' +
+      'It is located in Yosemite National Park. ' +
+      'The landmark is 5,000 feet above Yosmeite Valley and 8,800 feet above sea level. ' +
+      'It takes about 10 to 12 hours to hike and is about 16 miles long.' +
+      'The last 400 feet consists of cables up a steep rock wall to the top. ' +
+  '</div>';
+  // var contentString = '<div id="content">'+
+  //     '<div id="siteNotice">'+
+  //    '</div>'+
+  //     '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+  //     '<div id="bodyContent">'+
+  //     '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+  //     'sandstone rock formation in the southern part of the '+
+  //     'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+  //     'south west of the nearest large town, Alice Springs; 450&#160;km '+
+  //     '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+  //     'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+  //     'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+  //     'Aboriginal people of the area. It has many springs, waterholes, '+
+  //     'rock caves and ancient paintings. Uluru is listed as a World '+
+  //     'Heritage Site.</p>'+
+  //     '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+  //     'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+  //     '(last visited June 22, 2009).</p>'+
+  //     '</div>'+
+  //     '</div>';
+
+  var infowindow = new google.maps.InfoWindow(
+  {
+      content: contentString
+  }
+  );
+
+
+
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Half Dome'
+  });
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map,marker);
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
