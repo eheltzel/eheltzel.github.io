@@ -50,7 +50,8 @@ table, th, td {
   line, and off white in color using the hex code*/
   border: 2px solid #f7f7f7;
   /*Defines the radius of 25 pixels fro the border's corners*/
-  border-radius: 25px;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
   /*States that any content that overflows beyond the webpage, is hidden*/
   overflow: scroll;
 }
@@ -89,7 +90,6 @@ table, th, td {
   font-size: 15px;
   position: relative;
   left: 20px;
-  z-index: 1;
   padding-right: 10px;
 }
 
@@ -112,11 +112,12 @@ table, th, td {
 
 #copyright {
   position: relative;
-  max-width: 980px;
+  max-width: 1000px;
   text-align: center;
-  bottom: 20px;
+  bottom: 0px;
   margin: auto;
-  z-index: 2;
   background-color: #f7f7f7;
-  border-radius: 25px;
+  border: 2px solid #f7f7f7;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
