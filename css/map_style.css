@@ -1,4 +1,7 @@
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip{
-  background: yellow;
+  background: white;
+  width: 400px;
+  height: 200px;
+  overflow: scroll;
 }
