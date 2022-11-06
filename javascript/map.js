@@ -25,10 +25,13 @@
         zoom: 1,
     }).addTo(mymap);
 
-// India's Taj Mahal
-  var marker = L.marker([27.174961, 78.042385]).addTo(mymap);
 
-  marker.bindPopup(
+// India's Taj Mahal
+  var marker1 = L.marker([27.174961, 78.042385], {
+    icon: L.AwesomeMarkers.icon({icon: 'info', prefix: 'fa', markerColor: 'darkblue'})
+  }).addTo(mymap);
+
+  marker1.bindPopup(
     '<h3>India\'s Taj Mahal</h3>' +
       'The Taj Mahal is an Islamic ivory-white marble mausoleum on the right ' +
       'bank of the river Yamuna in the Indian city of Agra. The Taj Mahal' +
@@ -38,15 +41,17 @@
       '<br> Source: https://en.wikipedia.org/wiki/Taj_Mahal'
   );
 
-    marker.on('click', function(e){
+    marker1.on('click', function(e){
       mymap.setView(e.latlng, 16);
     })
 
 
 // Great Wall of China
-  var marker = L.marker([40.334245, 116.477652]).addTo(mymap);
+  var marker2 = L.marker([40.334245, 116.477652], {
+    icon: L.AwesomeMarkers.icon({icon: 'info', prefix: 'fa', markerColor: 'darkred'})
+  }).addTo(mymap);
 
-  marker.bindPopup(
+  marker2.bindPopup(
     '<h3>Great Wall of China</h3>' +
       'The Great Wall of China is a series of fortifications that were built ' +
       'across the historical northern borders of ancient Chinese states and ' +
@@ -56,15 +61,17 @@
       '<br><img src = images/great_wall.jpg width=210px height=140px/>' +
       '<br> Source: https://en.wikipedia.org/wiki/Great_Wall_of_China');
 
-    marker.on('click', function(e){
+    marker2.on('click', function(e){
       mymap.setView(e.latlng, 15);
     })
 
 
 // Petra in Jordan
-  var marker = L.marker([30.328611, 35.441944]).addTo(mymap);
+  var marker3 = L.marker([30.328611, 35.441944], {
+    icon: L.AwesomeMarkers.icon({icon: 'info', prefix: 'fa', markerColor: 'red'})
+  }).addTo(mymap);
 
-  marker.bindPopup(
+  marker3.bindPopup(
     '<h3>Petra in Jordan</h3>' +
       'Petra, originally known to its inhabitants as Raqmu or Raqēmō, is a ' +
       'historic and archaeological city in southern Jordan. ' +
@@ -75,14 +82,16 @@
       '<br><img src = images/petra.jpg width=160px height=200px/>' +
       '<br> Source: https://en.wikipedia.org/wiki/Petra');
 
-    marker.on('click', function(e){
+    marker3.on('click', function(e){
       mymap.setView(e.latlng, 16);
     })
 
 // Brazil's statue of Christ the Redeemer
-  var marker = L.marker([-22.951389, -43.2108334]).addTo(mymap);
+  var marker4 = L.marker([-22.951389, -43.2108334], {
+    icon: L.AwesomeMarkers.icon({icon: 'info', prefix: 'fa', markerColor: 'blue'})
+  }).addTo(mymap);
 
-  marker.bindPopup(
+  marker4.bindPopup(
     '<h3>Brazil\'s statue of Christ the Redeemer</h3>' +
       'Christ the Redeemer is an Art Deco statue of Jesus Christ in Rio de ' +
       'Janeiro, Brazil. A symbol of Christianity around the world, the statue ' +
@@ -91,14 +100,16 @@
       '<br><img src = images/christ_the_redeemer.jpg width=125px height=185px/>' +
       '<br> Source: https://en.wikipedia.org/wiki/Christ_the_Redeemer_(statue)');
 
-    marker.on('click', function(e){
+    marker4.on('click', function(e){
       mymap.setView(e.latlng, 16);
     })
 
 // Peru's Machu Picchu
-  var marker = L.marker([-13.163056, -72.545556]).addTo(mymap);
+  var marker5 = L.marker([-13.163056, -72.545556], {
+    icon: L.AwesomeMarkers.icon({icon: 'info', prefix: 'fa', markerColor: 'green'})
+  }).addTo(mymap);
 
-  marker.bindPopup(
+  marker5.bindPopup(
     '<h3>Peru\'s Machu Picchu</h3>' +
       'Machu Picchu is a 15th-century Inca citadel located in the Eastern ' +
       'Cordillera of southern Peru on a 2,430-meter (7,970 ft) mountain ridge. ' +
@@ -108,14 +119,16 @@
       '<br><img src = images/machu_picchu.jpg width=220px height=210px/>' +
       '<br> Source: https://en.wikipedia.org/wiki/Machu_Picchu');
 
-    marker.on('click', function(e){
+    marker5.on('click', function(e){
       mymap.setView(e.latlng, 17);
     })
 
 // Mexico's Chichen Itza pyramid
-  var marker = L.marker([20.682778, -88.569167]).addTo(mymap);
+  var marker6 = L.marker([20.682778, -88.569167], {
+    icon: L.AwesomeMarkers.icon({icon: 'info', prefix: 'fa', markerColor: 'purple'})
+  }).addTo(mymap);
 
-  marker.bindPopup(
+  marker6.bindPopup(
     '<h3>Mexico\'s Chichen Itza pyramid</h3>' +
       'Chichen Itza was a large pre-Columbian city built by the Maya ' +
       'people of the Terminal Classic period. The city may have had the most ' +
@@ -126,14 +139,16 @@
       '<img src = images/chichen_itza.jpg width=320px height=170px/>' +
       '<br> Source: https://en.wikipedia.org/wiki/Chichen_Itza');
 
-    marker.on('click', function(e){
+    marker6.on('click', function(e){
       mymap.setView(e.latlng, 16);
     })
 
 // The Colosseum in Rome
-  var marker = L.marker([41.890169,	12.492269]).addTo(mymap);
+  var marker7 = L.marker([41.890169,	12.492269], {
+    icon: L.AwesomeMarkers.icon({icon: 'info', prefix: 'fa', markerColor: 'orange'})
+  }).addTo(mymap);
 
-  marker.bindPopup(
+  marker7.bindPopup(
     '<h3>The Colosseum in Rome</h3>' +
       'The Colosseum is an oval amphitheatre in the centre of the city of Rome,' +
       'Italy. It is the largest ancient amphitheatre ever built, and is still ' +
@@ -145,7 +160,7 @@
       '<br> Source: https://en.wikipedia.org/wiki/Colosseum ');
 
 
-    marker.on('click', function(e){
+    marker7.on('click', function(e){
       mymap.setView(e.latlng, 15);
     })
 
