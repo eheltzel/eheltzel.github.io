@@ -18,6 +18,12 @@
       accessToken: mapbox_access_token,
   }).addTo(mymap);
 
+  L.control.resetView({
+        position: "topleft",
+        title: "Reset view",
+        latlng: L.latLng([0, 0]),
+        zoom: 1,
+    }).addTo(mymap);
 
 // India's Taj Mahal
   var marker = L.marker([27.174961, 78.042385]).addTo(mymap);
