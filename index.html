@@ -19,9 +19,9 @@
        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
        crossorigin=""></script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-search@d4cbd36122efc8d17152b4177ed0e12165305441/dist/css/L.Control.OpenCageData.Search.min.css" />
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-geocoding@v2.0.0/dist/css/L.Control.OpenCageGeocoding.min.css" />\
 
-    <script src="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-search@d4cbd36122efc8d17152b4177ed0e12165305441/dist/js/L.Control.OpenCageSearch.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-geocoding@v2.0.0/dist/js/L.Control.OpenCageGeocoding.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="css/main_style.css">
 
@@ -91,14 +91,14 @@
 
       <script>
 
-        var mymap = L.map('mapid');
+        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
         var options = {
           key: geocoder_api_key,
           limit: 10
         };
 
-        var control = L.control.openCageSearch(options).addTo(mymap);
+        var control = L.Control.openCageGeocoding(options).addTo(mymap);
 
         /*L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',{
             maxZoom: 18,
