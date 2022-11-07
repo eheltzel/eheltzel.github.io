@@ -1,12 +1,12 @@
 
   var mymap = L.map('mapid').setView([0, 0], 1);
 
-  var options = {
-    key: geocoder_api_key,
-    limit: 10
-  };
-
-  var control = L.Control.openCageGeocoding(options).addTo(mymap);
+  // var options = {
+  //   key: geocoder_api_key,
+  //   limit: 10
+  // };
+  //
+  // var control = L.Control.openCageGeocoding(options).addTo(mymap);
 
   // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   // }).addTo(mymap);
@@ -26,6 +26,41 @@
     }).addTo(mymap);
 
 
+    //sample data values for populate map
+    var data = [
+      {"loc":[27.174961, 78.042385], "title":"Taj Mahal"},
+      {"loc":[40.334245, 116.477652], "title":"Great Wall of China"},
+      {"loc":[30.328611, 35.441944], "title":"Petra"},
+      {"loc":[-22.951389, -43.2108334], "title":"Christ the Redeemer"},
+      {"loc":[-13.163056, -72.545556], "title":"Machu Picchu"},
+      {"loc":[20.682778, -88.569167], "title":"Chichen Itza"},
+      {"loc":[41.890169,	12.492269], "title":"The Colosseum"}
+    ];
+
+    var markersLayer = new L.LayerGroup();	//layer contain searched elements
+
+    mymap.addLayer(markersLayer);
+
+    var controlSearch = new L.Control.Search({
+      position:'topright',
+      layer: markersLayer,
+      initial: false,
+      zoom: 12,
+      marker: false
+    });
+
+    mymap.addControl(controlSearch);
+
+    ////////////populate map with markers from sample data
+    for(i in data) {
+      var title = data[i].title,	//value searched
+        loc = data[i].loc,		//position found
+        marker = new L.Marker(new L.latLng(loc), {title: title} );//se property searched
+      markersLayer.addLayer(marker);
+    }
+
+
+
 // India's Taj Mahal
   var marker1 = L.marker([27.174961, 78.042385], {
     icon: L.AwesomeMarkers.icon({icon: 'info', prefix: 'fa', markerColor: 'darkblue'})
@@ -38,8 +73,8 @@
       'attracts more than 6 million visitors a year and in 2007, it was declared' +
       'a winner of the New 7 Wonders of the World (2000–2007) initiative.' +
       '<br><img src = images/taj_mahal.jpg width=180px height=120px/>' +
-      '<br> Source: https://en.wikipedia.org/wiki/Taj_Mahal'
-  );
+      '<br> Source: https://en.wikipedia.org/wiki/Taj_Mahal',
+    );
 
     marker1.on('click', function(e){
       mymap.setView(e.latlng, 16);
@@ -47,8 +82,8 @@
 
 
 // Great Wall of China
-  var marker2 = L.marker([40.334245, 116.477652], {
-    icon: L.AwesomeMarkers.icon({icon: 'info', prefix: 'fa', markerColor: 'darkred'})
+  var marker2 = L.marker([40.334245, 116.477652], {icon:
+    L.AwesomeMarkers.icon({icon: 'info', prefix: 'fa', markerColor: 'darkred'})
   }).addTo(mymap);
 
   marker2.bindPopup(
@@ -180,6 +215,7 @@
     	labelFormatterLat : function(lat){return lat+" lat"}, //optional default none
     	customLabelFcn: function(latLonObj, opts) { "Geohash: " + encodeGeoHash(latLonObj.lat, latLonObj.lng)} //optional default none
     }).addTo(mymap);
+
 
 
   /*var marker = L.marker([51.5, -0.09]).addTo(mymap);
