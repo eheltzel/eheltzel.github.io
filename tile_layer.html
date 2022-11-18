@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"›
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>Tile Layer</title>
+
+        <style>
+            html, body, #viewDiv{
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+                }
+        </style>
+
+      <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css"/>
+      <script src="https://js.arcgis.com/4.21/"></script>
+
+    <script>
+      require(["esri/Map", "esri/views/MapView", "esri/layers/TileLayer"], // Adds Map and MapView from ESRI
+      function(Map, MapView, TileLayer){ // Adds Map and MapView as a function to the map
+
+        var map = new Map({ // Creates a new map variable using the Map function
+          basemap: "oceans", // Defines the basemap as streets
+          layer: TransportationLayer
+      });
+
+      var view = new MapView({ // Creates a new view variable to view the map
+          container: "viewDiv", // Defines the contained with the style above
+          map: map, // Defines the map to view
+          zoom: 10, // Defines the zoom level of the map
+          center: [-118.2095, 34.0866] // Defines the center of the map
+          });
+
+      var TransportationLayer = new TileLayer({
+        url: "https://server.arcgisonline.com/arcgis/rest/services/Reference/World_Transportation/MapServer"
+      });
+
+    });
+
+    </script>
+</head>
+
+<body>
+    <div id="viewDiv"></div>
+</body>
+
+</html>
