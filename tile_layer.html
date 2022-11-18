@@ -18,8 +18,8 @@
       <script src="https://js.arcgis.com/4.21/"></script>
 
     <script>
-      require(["esri/Map", "esri/views/MapView", "esri/layers/TileLayer"], // Adds Map and MapView from ESRI
-      function(Map, MapView, TileLayer){ // Adds Map and MapView as a function to the map
+      require(["esri/Map", "esri/views/MapView", "esri/layers/TileLayer"], // Add Map, MapView, and TileLayer from ESRI
+      function(Map, MapView, TileLayer){ // Add Map, MapView, and TileLayer as a function to the map
 
         var map = new Map({ // Creates a new map variable using the Map function
           basemap: "oceans", // Defines the basemap as streets
@@ -33,7 +33,8 @@
           center: [-118.2095, 34.0866] // Defines the center of the map
           });
 
-      var TransportationLayer = new TileLayer({
+      // Create a Tile Layer which accesses tiles from a cache instead of dynamic rendering, map loads faster
+      var TransportationLayer = new TileLayer({ // Adding specific layer of transportation to the map
         url: "https://server.arcgisonline.com/arcgis/rest/services/Reference/World_Transportation/MapServer"
       });
 
