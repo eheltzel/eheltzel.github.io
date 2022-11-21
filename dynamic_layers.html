@@ -23,7 +23,7 @@
 
         var map = new Map({ // Creates a new map variable using the Map function
           basemap: "dark-gray", // Defines the basemap as streets
-          layers: TransportationLayer, CitiesLayer
+          layers: TransportationLayer, CitiesLayer // Specifying layers of the map
       });
 
       var view = new MapView({ // Creates a new view variable to view the map
@@ -42,28 +42,28 @@
       var CitiesRenderer = {
             type: "simple", // autocasts as new SimpleRenderer()
             symbol: {
-                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-                size: 3,
-                color: "yellow",
-                style: "circle",
-                outline: {
+                type: "simple-marker", // Specifying type of marker
+                size: 3, // Specifying size of marker
+                color: "yellow", // Specifying color of marker
+                style: "circle",// Specfying shape of marker
+                outline: { // Specifying size and color of outline of marker
                     width: 1,
                     color: "yellow"}
          },
-          label: "Cities"
+          label: "Cities" // Stating the label for the markers
         };
 
+        // Creates a MapImageLayer which allows you to display and visualize sublayers
         var CitiesLayer = new MapImageLayer({
-          url: "https://sampleserver6.arcgisonline.coo/arcgis/rest/services/USA/MapServer",
+          url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer",
            sublayers: [
-               {
-                    id: 0,
-                    renderer: CitiesRenderer,
-                    opacity: 0.4
+               { // Specifying the subleyrs that you can visualize
+                    id: 0, // Reference id for the sublayer
+                    renderer: CitiesRenderer, // Specifying the variable above to show how layer should be viewed
+                    opacity: 0.4 // How transparent the layer will be
                  }
               ]
         });
-
 
     });
     </script>
