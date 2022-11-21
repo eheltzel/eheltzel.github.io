@@ -104,19 +104,20 @@
           position: "top-right"
         });
 
-
+        // Variable for the url where the layer/information is coming from
         var popUrl = "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/CaliforniaCities/FeatureServer/0";
 
+        // Template for the popup style for each city
         var popupTemplate = {
-          title: "{City}",
-          fieldInfos: [{
+          title: "{City}", // City name at the top of popup
+          fieldInfos: [{ // Specific information of Population for that city based on layer
             fieldName: "Population",
             label: "Population",
             format: {
               places: 0,
               digitSeparator: true
             }
-          }, {
+          }, { // Specific information of Household for that city based on layer
             fieldName: "Household",
             label: "Household",
             format: {
@@ -124,34 +125,40 @@
               digitSeparator: true
             }
           }],
-          content:
+          content: // Creating the specific content output for the popup
             "<b>Population:" + "</b> {Population} " +
             "<br><b>Households:</b> {Household}" +
             "<br><b>Latitude:</b> {Latitude}" +
             "<br><b>Longitude:</b> {Longitude}"
         };
 
+        // Displays the new graphics layer
         var resultsLayer = new GraphicsLayer();
 
+        // Specifies the query task and the url of where the query gets its info from
         var qTask = new QueryTask({
           url: popUrl
         });
 
+        // Specifies the parameters of the query
         var params = new Query({
           returnGeometry: true,
           outFields: ["*"]
         });
 
-
+        // Creates the user interface feature on the bottom right
         view.when(function() {
-          view.ui.add("optionsDiv", "bottom-right");
-          on(dom.byId("doBtn"), "click", doQuery);
+          view.ui.add("optionsDiv", "bottom-right"); // Specifies style and location on page
+          on(dom.byId("doBtn"), "click", doQuery); // Specifies the button action for the query
         });
 
+        // Creates variables for the query later of specific information i.e. attributes, signs, and values
         var attributeName = dom.byId("attSelect");
         var expressionSign = dom.byId("signSelect");
         var value = dom.byId("valSelect");
 
+        // The function that completes the query based on the parameters above
+        // Specifying what to do for the query function,
         function doQuery() {
           resultsLayer.removeAll();
           params.where = attributeName.value + expressionSign.value + value.value;
@@ -160,16 +167,17 @@
             .catch(promiseRejected);
         }
 
+        // Specifying what to do when the query goes through
         function getResults(response) {
-
+          // Showing the results in a popup from the template created
           var popResults = arrayUtils.map(response.features, function(
             feature) {
             feature.popupTemplate = popupTemplate;
             return feature;
           });
-
+          // Adding the results popup to the map
           resultsLayer.addMany(popResults);
-
+          // View the popup with the results, parameters to do so
           view.goTo(popResults).then(function() {
             view.popup.open({
               features: popResults,
@@ -177,11 +185,11 @@
               updateLocationEnabled: true
             });
           });
-
+          // Displaying the popup within the html
           dom.byId("printResults").innerHTML = popResults.length +
             "results found!";
         }
-
+        // Error message if query doesn't work
         function promiseRejected(error) {
           console.error("Promise rejected: ", error.message);
         }
@@ -192,7 +200,7 @@
 
 <body>
   <div id="viewDiv"></div>
-
+  
   <div class="esri-widget" id="optionsDiv">
       <h2>Cities in California</h2>
       <select class="esri-widget" id="attSelect">
@@ -208,7 +216,7 @@
           <option value="10000">10,000</option>
           <option value="50000">50,000</option>
           <option value="100000">100,000</option>
-          <option value="150000">150,800</option>
+          <option value="150000">150,000</option>
           <option value="200000">200,000</option>
       </select>
       <br>
