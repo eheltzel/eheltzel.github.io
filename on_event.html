@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"›
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>On Event</title>
+
+        <style>
+            html, body, #viewDiv{
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+                }
+        </style>
+
+      <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css"/>
+      <script src="https://js.arcgis.com/4.21/"></script>
+
+    <script>
+    require(["esri/Map", "esri/views/MapView", "esri/layers/TileLayer", "esri/layers/MapImageLayer"], // Add Map, MapView, and TileLayer from ESRI
+    function(Map, MapView, TileLayer, MapImageLayer){ // Add Map, MapView, and TileLayer as a function to the map
+
+      var map = new Map({ // Creates a new map variable using the Map function
+        basemap: "dark-gray", // Defines the basemap as streets
+        layers: TransportationLayer, CitiesLayer // Specifying layers of the map
+    });
+
+    var view = new MapView({ // Creates a new view variable to view the map
+        container: "viewDiv", // Defines the contained with the style above
+        map: map, // Defines the map to view
+        zoom: 10, // Defines the zoom level of the map
+        center: [-118.2095, 34.0866] // Defines the center of the map
+        });
+
+    // Create a Tile Layer which accesses tiles from a cache instead of dynamic rendering, map loads faster
+    var TransportationLayer = new TileLayer({ // Adding specific layer of transportation to the map
+      url: "https://server.arcgisonline.com/arcgis/rest/services/Reference/World_Transportation/MapServer"
+    });
+
+
+    var CitiesRenderer = {
+          type: "simple", // autocasts as new SimpleRenderer()
+          symbol: {
+              type: "simple-marker", // Specifying type of marker
+              size: 3, // Specifying size of marker
+              color: "yellow", // Specifying color of marker
+              style: "circle",// Specfying shape of marker
+              outline: { // Specifying size and color of outline of marker
+                  width: 1,
+                  color: "yellow"}
+       },
+        label: "Cities" // Stating the label for the markers
+      };
+
+      // Creates a MapImageLayer which allows you to display and visualize sublayers
+      var CitiesLayer = new MapImageLayer({
+        url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer",
+         sublayers: [
+             { // Specifying the subleyrs that you can visualize
+                  id: 0, // Reference id for the sublayer
+                  renderer: CitiesRenderer, // Specifying the variable above to show how layer should be viewed
+                  opacity: 0.4 // How transparent the layer will be
+               }
+            ]
+      });
+
+        view.on("click", eventHandler);
+
+        function eventHandler(event) {
+          console.log("You just triggered a 'click' event!");
+          alert("You just triggered a 'click' event!");
+        }
+
+
+    });
+    </script>
+</head>
+
+<body>
+    <div id="viewDiv"></div>
+</body>
+
+</html>
