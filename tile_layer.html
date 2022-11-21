@@ -21,22 +21,23 @@
       require(["esri/Map", "esri/views/MapView", "esri/layers/TileLayer"], // Add Map, MapView, and TileLayer from ESRI
       function(Map, MapView, TileLayer){ // Add Map, MapView, and TileLayer as a function to the map
 
+        // Create a Tile Layer which accesses tiles from a cache instead of dynamic rendering, map loads faster
+        var TransportationLayer = new TileLayer({ // Adding specific layer of transportation to the map
+          url: "https://server.arcgisonline.com/arcgis/rest/services/Reference/World_Transportation/MapServer"
+        });
+
         var map = new Map({ // Creates a new map variable using the Map function
           basemap: "oceans", // Defines the basemap as streets
-          layer: TransportationLayer
-      });
+          layers: TransportationLayer
+        });
 
-      var view = new MapView({ // Creates a new view variable to view the map
+        var view = new MapView({ // Creates a new view variable to view the map
           container: "viewDiv", // Defines the contained with the style above
           map: map, // Defines the map to view
           zoom: 10, // Defines the zoom level of the map
           center: [-118.2095, 34.0866] // Defines the center of the map
           });
 
-      // Create a Tile Layer which accesses tiles from a cache instead of dynamic rendering, map loads faster
-      var TransportationLayer = new TileLayer({ // Adding specific layer of transportation to the map
-        url: "https://server.arcgisonline.com/arcgis/rest/services/Reference/World_Transportation/MapServer"
-      });
 
     });
 

@@ -50,18 +50,6 @@
 
       function(Map, MapView, TileLayer, MapImageLayer, BasemapGallery, GraphicsLayer, QueryTask, Query, arrayUtils, dom, on){ // Add as a function to the map
 
-        var map = new Map({ // Creates a new map variable using the Map function
-          basemap: "dark-gray", // Defines the basemap as streets
-          layers: TransportationLayer, CitiesLayer // Specifying layers of the map
-        });
-
-        var view = new MapView({ // Creates a new view variable to view the map
-          container: "viewDiv", // Defines the contained with the style above
-          map: map, // Defines the map to view
-          zoom: 10, // Defines the zoom level of the map
-          center: [-118.2095, 34.0866] // Defines the center of the map
-          });
-
         // Create a Tile Layer which accesses tiles from a cache instead of dynamic rendering, map loads faster
         var TransportationLayer = new TileLayer({ // Adding specific layer of transportation to the map
         url: "https://server.arcgisonline.com/arcgis/rest/services/Reference/World_Transportation/MapServer"
@@ -93,6 +81,19 @@
                  }
               ]
         });
+
+        var map = new Map({ // Creates a new map variable using the Map function
+          basemap: "dark-gray", // Defines the basemap as streets
+          layers: [TransportationLayer, CitiesLayer] // Specifying layers of the map
+        });
+
+        var view = new MapView({ // Creates a new view variable to view the map
+          container: "viewDiv", // Defines the contained with the style above
+          map: map, // Defines the map to view
+          zoom: 10, // Defines the zoom level of the map
+          center: [-118.2095, 34.0866] // Defines the center of the map
+          });
+          
 
         // Creating the variable for the gallery and viewing it
         var basemapGallery = new BasemapGallery({
@@ -200,7 +201,7 @@
 
 <body>
   <div id="viewDiv"></div>
-  
+
   <div class="esri-widget" id="optionsDiv">
       <h2>Cities in California</h2>
       <select class="esri-widget" id="attSelect">
