@@ -9,7 +9,7 @@
             html, body, #viewDiv{
                 padding: 0;
                 margin: 0;
-                height: 100%;
+                height: 95%;
                 width: 100%;
                 }
 
@@ -33,12 +33,15 @@
       <script src="https://js.arcgis.com/4.21/"></script>
 
     <script>
+
+    // Adding AMD with necessary references and functions
       require([
         "esri/Map",
         "esri/views/MapView",
         "esri/layers/TileLayer",
         "esri/layers/MapImageLayer",
         "esri/layers/GraphicsLayer",
+        "esri/widgets/ScaleBar",
         "esri/tasks/QueryTask",
         "esri/tasks/support/Query",
         "dojo/_base/array",
@@ -46,13 +49,14 @@
         "dojo/on",
         "dojo/domReady!"
       ],
-
-      function(Map, MapView, TileLayer, MapImageLayer, GraphicsLayer, QueryTask, Query, arrayUtils, dom, on){
+      function(Map, MapView, TileLayer, MapImageLayer, GraphicsLayer, ScaleBar,
+        QueryTask, Query, arrayUtils, dom, on){
 
        //  var TreeLayer = new TileLayer({
        //   url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/Boston_Trees_with_Height_WFL1/FeatureServer",
        // });
 
+       // Styling the markers for the trees in layer
         var TreeRenderer = {
               type: "simple",
               symbol: {
@@ -67,23 +71,23 @@
             label: "Trees"
           };
 
+          // Adding tree layer as a MapImageLayer
           var TreeLayer = new MapImageLayer({
             url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/Boston_Trees_with_Height_WFL1/FeatureServer",
-             sublayers: [
-                 {
-                      id: 0,
-                      renderer: TreeRenderer,
-                      opacity: 0.4
-                   }
-                ]
+             sublayers: [{
+                id: 0,
+                renderer: TreeRenderer,
+                opacity: 0.4
+               }]
           });
 
-
+        // Adding map to the site, specifying basemap and layers
         var map = new Map({
           basemap: "streets",
           layers: [TreeLayer]
         });
 
+        // Viewing the map created, specifying zoom, center, and container
         var view = new MapView({
           container: "viewDiv",
           map: map,
@@ -91,9 +95,10 @@
           center: [-71.0589, 42.3601]
           });
 
-
+        // Adding the URL to the layer's table information
         var popUrl = "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/Boston_Trees_with_Height_WFL1/FeatureServer/0";
 
+        // Creating a template for the popup from the query
         var popupTemplate = {
           title: "{OBJECTID}",
           fieldInfos: [{
@@ -115,27 +120,32 @@
             "<br><b>Z:</b> {Z} "
         };
 
+        // Creating a new GraphicsLayer for the results of the query
         var resultsLayer = new GraphicsLayer();
 
+        // Creating a QueryTask specifying the url with layer information
         var qTask = new QueryTask({
           url: popUrl
         });
 
+        // Specifying the Query and return geometry
         var params = new Query({
           returnGeometry: true,
           outFields: ["*"]
         });
 
+        // Placing the query box and viewing the query
         view.when(function() {
           view.ui.add("optionsDiv", "bottom-right");
           on(dom.byId("doBtn"), "click", doQuery);
         });
 
+        // Creating variables for the query
         var attributeName = dom.byId("attSelect");
         var expressionSign = dom.byId("signSelect");
         var value = dom.byId("valSelect");
 
-
+        // Function for the actual querying, what/how to the look for query
         function doQuery() {
           resultsLayer.removeAll();
           params.where = attributeName.value + expressionSign.value + value.value;
@@ -144,6 +154,7 @@
             .catch(promiseRejected);
         }
 
+        // Gathering the results for the query into the popup template
         function getResults(response) {
           var popResults = arrayUtils.map(response.features, function(
             feature) {
@@ -151,8 +162,10 @@
             return feature;
           });
 
+          // Adding the popup results to the map
           resultsLayer.addMany(popResults);
 
+          // Viewing the popup results, specifying popup features such as zooming to feature
           view.goTo(popResults).then(function() {
             view.popup.open({
               features: popResults,
@@ -161,19 +174,36 @@
             });
           });
 
+          // Putting the results of the query within the html
           dom.byId("printResults").innerHTML = popResults.length +
             "results found!";
         }
 
+        // Function if the query failed
         function promiseRejected(error) {
           console.error("Promise rejected: ", error.message);
         }
+
+        // Adding a scale bar to the map view
+        let scaleBar = new ScaleBar({
+          view: view
+        });
+
+        // Add scale bar to the bottom left corner of the view
+        view.ui.add(scaleBar, {
+          position: "bottom-left"
+        });
+
 
     });
     </script>
 </head>
 
 <body>
+  <div>
+    <h2>Lab 7 Homework</h2>
+  </div>
+
   <div id="viewDiv"></div>
 
   <div class="esri-widget" id="optionsDiv">
@@ -197,6 +227,10 @@
       <button class="esri-widget" id="doBtn">Do Query</button>
       <br>
       <p><span id="orintResults"></span></p>
+  </div>
+
+  <div style="text-align: center">
+    <footer>Copyright 2022</footer>
   </div>
 
 </body>
